@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quran & Tajweed Online Academy | ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Malayalam -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* =========================================================
+       CSS CUSTOM PROPERTIES: NIGHT MODE (DEFAULT) & DAY MODE
+       Zero dependency on Tailwind darkMode config so switching is 100% instant
+    ========================================================== */
+    :root {
+      --bg-page: #0B1120;
+      --bg-header: rgba(11, 17, 32, 0.88);
+      --bg-card: rgba(15, 23, 42, 0.78);
+      --bg-card-solid: #0F172A;
+      --bg-card-subtle: rgba(30, 41, 59, 0.65);
+      --bg-input: rgba(6, 10, 20, 0.85);
+      --bg-footer: #060A14;
+      --bg-pill: rgba(16, 185, 129, 0.14);
+      --bg-gold-pill: rgba(212, 175, 55, 0.16);
+      --border-main: rgba(51, 65, 85, 0.75);
+      --border-subtle: rgba(30, 41, 59, 0.9);
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --text-emerald: #34D399;
+      --text-gold: #FBBF24;
+      --shadow-card: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
+      --pattern-dot-1: rgba(212, 175, 55, 0.13);
+      --pattern-dot-2: rgba(16, 185, 129, 0.11);
+    }
+
+    html.day-mode,
+    body.day-mode {
+      --bg-page: #F4F7F6;
+      --bg-header: rgba(255, 255, 255, 0.92);
+      --bg-card: rgba(255, 255, 255, 0.94);
+      --bg-card-solid: #FFFFFF;
+      --bg-card-subtle: #F1F5F9;
+      --bg-input: #FFFFFF;
+      --bg-footer: #ECFDF5;
+      --bg-pill: rgba(5, 150, 105, 0.12);
+      --bg-gold-pill: rgba(180, 142, 34, 0.14);
+      --border-main: rgba(203, 213, 225, 0.95);
+      --border-subtle: rgba(226, 232, 240, 0.95);
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #475569;
+      --text-emerald: #047857;
+      --text-gold: #9A7414;
+      --shadow-card: 0 12px 30px -10px rgba(15, 23, 42, 0.1);
+      --pattern-dot-1: rgba(5, 150, 105, 0.13);
+      --pattern-dot-2: rgba(212, 175, 55, 0.16);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Malayalam', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Theme-aware Surface & Text Classes */
+    .theme-header {
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-main);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .theme-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-main);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: background-color 0.3s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .theme-card-subtle {
+      background-color: var(--bg-card-subtle);
+      border: 1px solid var(--border-subtle);
+      transition: background-color 0.3s ease, border-color 0.25s ease;
+    }
+
+    .theme-input {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-main);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, border-color 0.2s ease, color 0.3s ease;
+    }
+
+    .theme-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .theme-footer {
+      background-color: var(--bg-footer);
+      border-top: 1px solid var(--border-main);
+      transition: background-color 0.3s ease;
+    }
+
+    .text-theme-primary { color: var(--text-primary); }
+    .text-theme-secondary { color: var(--text-secondary); }
+    .text-theme-muted { color: var(--text-muted); }
+    .text-theme-emerald { color: var(--text-emerald); }
+    .text-theme-gold { color: var(--text-gold); }
+    .border-theme-main { border-color: var(--border-main); }
+
+    .islamic-pattern {
+      background-image: radial-gradient(circle at 1px 1px, var(--pattern-dot-1) 1px, transparent 0),
+                        radial-gradient(circle at 16px 16px, var(--pattern-dot-2) 1px, transparent 0);
+      background-size: 32px 32px;
+    }
+
+    .shadow-emerald-glow {
+      box-shadow: 0 10px 35px -8px rgba(16, 185, 129, 0.38);
+    }
+
+    .shadow-gold-glow {
+      box-shadow: 0 10px 35px -8px rgba(212, 175, 55, 0.32);
+    }
+
+    /* Logo frame styling */
+    .logo-frame {
+      border: 1.5px solid rgba(212, 175, 55, 0.65);
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22);
+      background-color: #062816;
+    }
+
+    /* Smooth anchor scrolling with sticky header offset */
+    html {
+      scroll-behavior: smooth;
+    }
+    section[id] {
+      scroll-margin-top: 90px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #059669;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10B981;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+    }
+    .animate-float-slow {
+      animation: floatSlow 7s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-emerald-500 selection:text-white overflow-x-hidden">
+
+  <!-- Decorative Ambient Radial Glows -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 w-96 h-96 rounded-full bg-[#D4AF37]/15 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-[32rem] h-[32rem] rounded-full bg-emerald-600/10 blur-3xl"></div>
+  </div>
+
+  <!-- =========================================================
+       TOP STICKY NAVIGATION BAR
+  ========================================================== -->
+  <header id="navbar" class="sticky top-0 z-50 w-full theme-header transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2">
+
+        <!-- Brand Logo (image_5d0c64.png) & Title -->
+        <a href="#home" data-scroll-target="home" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+          <div class="relative flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden logo-frame group-hover:scale-105 transition-transform">
+            <img
+              src="image_5d0c64.png"
+              alt="Quran.tutor - Quran & Tajweed Online Academy"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Fallback Emblem if image path unavailable -->
+            <div style="display:none;" class="w-full h-full items-center justify-center bg-[#062816] text-[#FBBF24] font-extrabold text-xs">
+              Q.T
+            </div>
+          </div>
+          <div class="min-w-0">
+            <span data-i18n="brandTitle" class="block font-extrabold text-xs sm:text-base lg:text-lg tracking-tight text-theme-primary leading-tight truncate">
+              Quran & Tajweed Online Academy
+            </span>
+            <span data-i18n="brandSubtitle" class="block text-[10px] sm:text-xs font-semibold text-theme-emerald truncate">
+              ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-1">
+          <a href="#home" data-scroll-target="home" data-i18n="navHome" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Home</a>
+          <a href="#courses" data-scroll-target="courses" data-i18n="navCourses" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Our Courses</a>
+          <a href="#features" data-scroll-target="features" data-i18n="navFeatures" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Why Choose Us</a>
+          <a href="#packages" data-scroll-target="packages" data-i18n="navPackages" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Packages & Fees</a>
+          <a href="#payment-methods" data-scroll-target="payment-methods" data-i18n="navPayments" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Payment Methods</a>
+          <a href="#registration" data-scroll-target="registration" data-i18n="navRegister" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Registration</a>
+          <a href="#contact" data-scroll-target="contact" data-i18n="navContact" class="px-3 py-2 rounded-xl text-sm font-semibold text-theme-secondary hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors">Contact Us</a>
+        </nav>
+
+        <!-- Action Controls: Segmented Language Switch + Day/Night Theme Button + Mobile Hamburger -->
+        <div class="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
+
+          <!-- Segmented Language Toggle (English | മലയാളം) -->
+          <div role="group" aria-label="Language Selector" class="inline-flex items-center p-1 rounded-xl border border-emerald-500/40 theme-card-subtle shadow-sm">
+            <button
+              id="langEnBtn"
+              type="button"
+              class="px-2 sm:px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-extrabold transition-all cursor-pointer bg-emerald-600 text-white shadow-sm"
+            >
+              English
+            </button>
+            <button
+              id="langMlBtn"
+              type="button"
+              class="px-2 sm:px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-extrabold transition-all cursor-pointer text-theme-secondary hover:text-emerald-500"
+            >
+              മലയാളം
+            </button>
+          </div>
+
+          <!-- Theme Toggle Button (Day Mode / Night Mode) -->
+          <button
+            id="themeToggleBtn"
+            type="button"
+            aria-label="Switch Day or Night Mode"
+            class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-[11px] sm:text-xs font-extrabold border border-amber-500/40 theme-card-subtle text-theme-primary hover:border-emerald-500 active:scale-95 transition-all cursor-pointer shadow-sm"
+          >
+            <!-- Sun Icon (shown when currently in Night Mode) -->
+            <svg id="sunIcon" class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="4"/>
+              <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+            </svg>
+            <!-- Moon Icon (shown when currently in Day Mode) -->
+            <svg id="moonIcon" class="w-4 h-4 text-emerald-700 flex-shrink-0 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+            <span id="themeToggleText" class="whitespace-nowrap">Day Mode</span>
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Toggle Navigation Menu"
+            class="xl:hidden inline-flex items-center justify-center p-2 sm:p-2.5 rounded-xl border border-theme-main theme-card-subtle text-theme-primary hover:border-emerald-500 transition-colors cursor-pointer"
+          >
+            <svg id="menuOpenIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="menuCloseIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-theme-main theme-header px-4 pt-3 pb-5 space-y-1.5">
+      <!-- Mobile Quick Controls Inside Drawer -->
+      <div class="flex items-center justify-between gap-2 pb-3 mb-2 border-b border-theme-main">
+        <div class="inline-flex items-center p-1 rounded-xl border border-emerald-500/40 theme-card-subtle">
+          <button id="mobileLangEnBtn" type="button" class="px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all cursor-pointer bg-emerald-600 text-white">
+            English
+          </button>
+          <button id="mobileLangMlBtn" type="button" class="px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all cursor-pointer text-theme-secondary">
+            മലയാളം
+          </button>
+        </div>
+        <button id="mobileThemeToggleBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-extrabold border border-amber-500/40 theme-card-subtle text-theme-primary cursor-pointer">
+          <svg id="mobileSunIcon" class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"/>
+            <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+          </svg>
+          <svg id="mobileMoonIcon" class="w-4 h-4 text-emerald-700 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+          <span id="mobileThemeToggleText">Day Mode</span>
+        </button>
+      </div>
+
+      <a href="#home" data-scroll-target="home" data-i18n="navHome" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Home</a>
+      <a href="#courses" data-scroll-target="courses" data-i18n="navCourses" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Our Courses</a>
+      <a href="#features" data-scroll-target="features" data-i18n="navFeatures" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Why Choose Us</a>
+      <a href="#packages" data-scroll-target="packages" data-i18n="navPackages" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Packages & Fees</a>
+      <a href="#payment-methods" data-scroll-target="payment-methods" data-i18n="navPayments" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Payment Methods</a>
+      <a href="#registration" data-scroll-target="registration" data-i18n="navRegister" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Registration</a>
+      <a href="#contact" data-scroll-target="contact" data-i18n="navContact" class="block px-4 py-3 rounded-xl text-sm font-semibold text-theme-primary hover:bg-emerald-500/15 hover:text-emerald-500 transition-colors">Contact Us</a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- =========================================================
+         SECTION 1: HERO SECTION (#home)
+    ========================================================== -->
+    <section id="home" class="relative pt-10 pb-16 sm:pt-14 sm:pb-24 overflow-hidden">
+      <!-- Subtle Islamic Geometric Background Layer -->
+      <div class="absolute inset-0 islamic-pattern opacity-80 pointer-events-none"></div>
+
+      <!-- Decorative Floating Rub el Hizb SVG Accent -->
+      <svg class="hidden lg:block absolute top-14 right-10 w-64 h-64 text-[#D4AF37]/15 animate-float-slow pointer-events-none" viewBox="0 0 200 200" fill="none">
+        <rect x="35" y="35" width="130" height="130" rx="8" stroke="currentColor" stroke-width="2"/>
+        <rect x="35" y="35" width="130" height="130" rx="8" transform="rotate(45 100 100)" stroke="#10B981" stroke-width="2"/>
+        <circle cx="100" cy="100" r="42" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
+      </svg>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-4xl mx-auto text-center">
+
+          <!-- Hero Brand Crest & Pill Badge with Custom Logo -->
+          <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/35 text-theme-emerald text-xs sm:text-sm font-bold mb-6 shadow-sm">
+            <img
+              src="image_5d0c64.png"
+              alt="Quran.tutor Emblem"
+              class="w-7 h-7 rounded-xl object-cover border border-[#D4AF37]/70 flex-shrink-0"
+              onerror="this.style.display='none'"
+            />
+            <span data-i18n="heroBadge">Interactive Live Online Quran & Tajweed Learning (Ages 7+)</span>
+          </div>
+
+          <!-- Hero Main Headline -->
+          <h1 data-i18n="heroTitle" class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.3rem] font-extrabold tracking-tight text-theme-primary leading-[1.22] mb-6">
+            Learn to Read the Holy Quran Fluently with Proper Pronunciation (Tajweed).
+          </h1>
+
+          <!-- Hero Subtext -->
+          <p data-i18n="heroSubtext" class="text-base sm:text-lg md:text-xl text-theme-secondary max-w-3xl mx-auto leading-relaxed mb-9">
+            An online platform for anyone, regardless of age, to learn Quran recitation from the comfort of home with the guidance of experienced Ustads.
+          </p>
+
+          <!-- Primary CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <a href="#registration" data-scroll-target="registration" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-base sm:text-lg font-bold text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 shadow-emerald-glow hover:-translate-y-0.5 active:translate-y-0 transition-all">
+              <svg class="w-5 h-5 text-[#FDE68A]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span data-i18n="heroCta">Book a Free Demo Class</span>
+            </a>
+
+            <a href="#packages" data-scroll-target="packages" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl text-base font-bold theme-card hover:border-[#D4AF37] text-theme-primary transition-all">
+              <span data-i18n="heroSecondaryCta">Explore Packages & Fees</span>
+              <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Hero Subtle Social Pill for Official Instagram -->
+          <div class="flex justify-center mb-12">
+            <a
+              href="https://www.instagram.com/quran.__tutor?utm_source=ig_web_button_share_sheet&knvt=ZDNlZDc0MzIxNw=="
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-2.5 px-4 py-2 rounded-full theme-card hover:border-pink-500/60 text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all shadow-sm"
+            >
+              <span class="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+              </span>
+              <span data-i18n="heroInstaPill">Follow @quran.__tutor on Instagram</span>
+              <svg class="w-3.5 h-3.5 text-theme-muted group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Section Directory (7-Card Interactive Navigator) -->
+        <div class="mt-4">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <span class="h-px w-8 bg-gradient-to-r from-transparent to-[#D4AF37]"></span>
+            <span data-i18n="quickNavLabel" class="text-xs font-bold uppercase tracking-widest text-theme-muted">Quick Section Navigator</span>
+            <span class="h-px w-8 bg-gradient-to-l from-transparent to-[#D4AF37]"></span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            <!-- 1. Home -->
+            <a href="#home" data-scroll-target="home" class="group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl theme-card hover:border-emerald-500 hover:-translate-y-1 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-theme-emerald flex items-center justify-center mb-2 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </div>
+              <span data-i18n="dirHome" class="text-xs font-bold text-theme-primary leading-snug">Home</span>
+            </a>
+
+            <!-- 2. Our Courses -->
+            <a href="#courses" data-scroll-target="courses" class="group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl theme-card hover:border-emerald-500 hover:-translate-y-1 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-theme-emerald flex items-center justify-center mb-2 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+              </div>
+              <span data-i18n="dirCourses" class="text-xs font-bold text-theme-primary leading-snug">Our Courses</span>
+            </a>
+
+            <!-- 3. Why Choose Us -->
+            <a href="#features" data-scroll-target="features" class="group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl theme-card hover:border-emerald-500 hover:-translate-y-1 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-[#D4AF37]/15 text-theme-gold flex items-center justify-center mb-2 group-hover:bg-[#D4AF37] group-hover:text-slate-950 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <span data-i18n="dirFeatures" class="text-xs font-bold text-theme-primary leading-snug">Why Choose Us</span>
+            </a>
+
+            <!-- 4. Packages & Fees -->
+            <a href="#packages" data-scroll-target="packages" class="group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl theme-card hover:border-emerald-500 hover:-translate-y-1 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-theme-emerald flex items-center justify-center mb-2 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                </svg>
+              </div>
+              <span data-i18n="dirPackages" class="text-xs font-bold text-theme-primary leading-snug">Packages & Fees</span>
+            </a>
+
+            <!-- 5. Payment Methods -->
+            <a href="#payment-methods" data-scroll-target="payment-methods" class="group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl theme-card hover:border-emerald-500 hover:-translate-y-1 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-[#D4AF37]/15 text-theme-gold flex items-center justify-center mb-2 group-hover:bg-[#D4AF37] group-hover:text-slate-950 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                </svg>
+              </div>
+              <span data-i18n="dirPayments" class="text-xs font-bold text-theme-primary leading-snug">Payment Methods</span>
+            </a>
+
+            <!-- 6. Registration & Free Demo -->
+            <a href="#registration" data-scroll-target="registration" class="group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl border border-emerald-500/45 bg-emerald-500/12 hover:border-emerald-500 hover:-translate-y-1 transition-all shadow-sm">
+              <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                </svg>
+              </div>
+              <span data-i18n="dirRegister" class="text-xs font-bold text-theme-emerald leading-snug">Registration & Free Demo</span>
+            </a>
+
+            <!-- 7. Contact Us -->
+            <a href="#contact" data-scroll-target="contact" class="col-span-2 sm:col-span-1 group flex flex-col items-center justify-center text-center p-3.5 rounded-2xl theme-card hover:border-emerald-500 hover:-translate-y-1 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-theme-emerald flex items-center justify-center mb-2 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+              </div>
+              <span data-i18n="dirContact" class="text-xs font-bold text-theme-primary leading-snug">Contact Us</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2: OUR COURSES (#courses)
+    ========================================================== -->
+    <section id="courses" class="py-16 sm:py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span data-i18n="coursesTag" class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#D4AF37]/15 text-theme-gold border border-[#D4AF37]/30 mb-3">
+            Structured Curriculum • Ages 7+
+          </span>
+          <h2 data-i18n="coursesHeading" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-theme-primary mb-4">
+            Our Courses
+          </h2>
+          <p data-i18n="coursesSubheading" class="text-sm sm:text-base text-theme-muted">
+            Two comprehensive learning tracks designed for students aged 7 and above (7+) — covering complete Quran, Tajweed & Noorani Qaida mastery as well as essential daily Fiqh & Duas.
+          </p>
+        </div>
+
+        <!-- Symmetrical 2-Column Equal-Height Course Grid (Both Ages 7+) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto items-stretch">
+
+          <!-- Course 1: Complete Quran Reading, Tajweed & Noorani Qaida (Ages 7+) -->
+          <article class="group relative rounded-3xl p-7 sm:p-8 theme-card border-2 border-emerald-500/60 hover:border-emerald-500 hover:-translate-y-1.5 flex flex-col justify-between h-full overflow-hidden">
+            <div class="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-emerald-500/15 to-transparent rounded-bl-full pointer-events-none"></div>
+
+            <div>
+              <!-- Top Icon & 7+ Eligibility Badge -->
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white flex items-center justify-center shadow-emerald-glow group-hover:scale-105 transition-transform flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  </svg>
+                </div>
+                <span data-i18n="courseAge7Plus" class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-500/15 text-theme-emerald border border-emerald-500/35">
+                  Ages 7 & Above (7+)
+                </span>
+              </div>
+
+              <div data-i18n="course1TrackLabel" class="inline-block text-xs font-extrabold uppercase tracking-wider text-theme-emerald mb-1.5">
+                Track 01 • Complete Quran Mastery
+              </div>
+              <h3 data-i18n="course1Title" class="text-xl sm:text-2xl font-extrabold text-theme-primary mb-3 leading-snug">
+                Complete Quran Reading, Tajweed & Noorani Qaida
+              </h3>
+              <p data-i18n="course1Desc" class="text-sm sm:text-base text-theme-secondary leading-relaxed mb-6">
+                Step-by-step mastery of the Arabic alphabet, articulation points (Makharij), vowel markings (Harakat), essential Tajweed rules, and fluent Mushaf reading (Nazira) from basics to fluency.
+              </p>
+
+              <!-- Interactive Syllabus Modules -->
+              <div class="space-y-2.5 p-4 rounded-2xl theme-card-subtle">
+                <div class="flex items-start gap-2.5 text-xs sm:text-sm text-theme-secondary">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></span>
+                  <span data-i18n="course1Mod1">Noorani Qaida: Arabic alphabet, articulation points (Makharij) & Harakat</span>
+                </div>
+                <div class="flex items-start gap-2.5 text-xs sm:text-sm text-theme-secondary">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></span>
+                  <span data-i18n="course1Mod2">Tajweed Rules: Essential pronunciation rules with clear examples</span>
+                </div>
+                <div class="flex items-start gap-2.5 text-xs sm:text-sm text-theme-secondary">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></span>
+                  <span data-i18n="course1Mod3">Quran Reading (Nazira): Fluent, mistake-free Mushaf recitation</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Meta & Direct Pre-Selecting CTA -->
+            <div class="mt-7 pt-5 border-t border-theme-main flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <span data-i18n="courseBadgeLive" class="text-xs font-bold text-theme-emerald text-center sm:text-left">
+                Live Online Classes • 3 Days/Week
+              </span>
+              <button
+                type="button"
+                data-select-pkg="pkg1"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm active:scale-95 transition-all cursor-pointer"
+              >
+                <span data-i18n="courseEnrollBtn">Enroll in This Course</span>
+                <span>→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Course 2: Essential Fiqh, Sunnah Prayers & Daily Duas (Ages 7+) -->
+          <article class="group relative rounded-3xl p-7 sm:p-8 theme-card border-2 border-[#D4AF37]/65 hover:border-[#D4AF37] hover:-translate-y-1.5 flex flex-col justify-between h-full overflow-hidden">
+            <div class="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-[#D4AF37]/20 to-transparent rounded-bl-full pointer-events-none"></div>
+
+            <div>
+              <!-- Top Icon & 7+ Eligibility Badge -->
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-[#D4AF37] text-slate-950 flex items-center justify-center shadow-gold-glow group-hover:scale-105 transition-transform flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                  </svg>
+                </div>
+                <span data-i18n="courseAge7Plus" class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-[#D4AF37]/20 text-theme-gold border border-[#D4AF37]/35">
+                  Ages 7 & Above (7+)
+                </span>
+              </div>
+
+              <div data-i18n="course2TrackLabel" class="inline-block text-xs font-extrabold uppercase tracking-wider text-theme-gold mb-1.5">
+                Track 02 • 3-Month Practical Module
+              </div>
+              <h3 data-i18n="course2Title" class="text-xl sm:text-2xl font-extrabold text-theme-primary mb-3 leading-snug">
+                Essential Fiqh, Sunnah Prayers & Daily Duas
+              </h3>
+              <p data-i18n="course2Desc" class="text-sm sm:text-base text-theme-secondary leading-relaxed mb-6">
+                Practical 3-month module covering daily Namaz & Sunnah prayers, Mayyith Namaz, essential daily Duas (bathroom, sleeping, waking up, eating, etc.), short Hadiths, and everyday Dhikr.
+              </p>
+
+              <!-- Interactive Syllabus Modules -->
+              <div class="space-y-2.5 p-4 rounded-2xl theme-card-subtle">
+                <div class="flex items-start gap-2.5 text-xs sm:text-sm text-theme-secondary">
+                  <span class="w-2 h-2 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                  <span data-i18n="course2Mod1">Prayers (Namaz): Daily Fard, Sunnah Prayers & Mayyith Namaz</span>
+                </div>
+                <div class="flex items-start gap-2.5 text-xs sm:text-sm text-theme-secondary">
+                  <span class="w-2 h-2 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                  <span data-i18n="course2Mod2">Daily Duas: Bathroom, sleeping, waking up, eating & daily routines</span>
+                </div>
+                <div class="flex items-start gap-2.5 text-xs sm:text-sm text-theme-secondary">
+                  <span class="w-2 h-2 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                  <span data-i18n="course2Mod3">Hadith & Dhikr: Short Hadiths & everyday Masnoon Adhkar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Meta & Direct Pre-Selecting CTA -->
+            <div class="mt-7 pt-5 border-t border-theme-main flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <span data-i18n="courseBadgeFiqh" class="text-xs font-bold text-theme-gold text-center sm:text-left">
+                3-Month Module • Ages 7+
+              </span>
+              <button
+                type="button"
+                data-select-pkg="pkg3"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-[#D4AF37] to-amber-500 hover:from-amber-400 hover:to-[#D4AF37] text-slate-950 shadow-sm active:scale-95 transition-all cursor-pointer"
+              >
+                <span data-i18n="courseEnrollBtn">Enroll in This Course</span>
+                <span>→</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3: LEARNING METHOD & ACADEMY RULES (#features)
+    ========================================================== -->
+    <section id="features" class="py-16 sm:py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span data-i18n="featuresTag" class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/15 text-theme-emerald border border-emerald-500/30 mb-3">
+            Learning Method & Academy Rules
+          </span>
+          <h2 data-i18n="featuresHeading" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-theme-primary mb-4">
+            Why Choose Us
+          </h2>
+          <p data-i18n="featuresSubheading" class="text-sm sm:text-base text-theme-muted">
+            Dedicated personal mentorship, clear age eligibility, and transparent monthly fee policies.
+          </p>
+        </div>
+
+        <!-- Bento-Grid of 4 Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+          <!-- Pillar 1 -->
+          <div class="md:col-span-6 rounded-3xl p-7 sm:p-8 theme-card hover:border-emerald-500/60 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-theme-emerald flex items-center justify-center">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 data-i18n="feat1Title" class="text-xl font-bold text-theme-primary mb-2">
+                Interactive Live Online Classes
+              </h3>
+              <p data-i18n="feat1Desc" class="text-sm sm:text-base text-theme-secondary leading-relaxed">
+                Interactive live online sessions with personal guidance from experienced Ustads.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="md:col-span-6 rounded-3xl p-7 sm:p-8 theme-card hover:border-[#D4AF37]/60 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-theme-gold flex items-center justify-center">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 data-i18n="feat2Title" class="text-xl font-bold text-theme-primary mb-2">
+                3 Days a Week Schedule
+              </h3>
+              <p data-i18n="feat2Desc" class="text-sm sm:text-base text-theme-secondary leading-relaxed">
+                Classes will be held 3 days a week for steady, structured progress.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="md:col-span-6 rounded-3xl p-7 sm:p-8 theme-card hover:border-[#D4AF37]/60 flex flex-col sm:flex-row items-start gap-6">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-theme-gold flex items-center justify-center">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 data-i18n="feat3Title" class="text-xl font-bold text-theme-primary mb-2">
+                Separate Batches & Eligibility
+              </h3>
+              <p data-i18n="feat3Desc" class="text-sm sm:text-base text-theme-secondary leading-relaxed">
+                Separate batches for kids, adults, and women. Ages 6+ for Quran, Tajweed & Noorani Qaida; Essential Fiqh & Duas is open to everyone (under-15 kids & adults).
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="md:col-span-6 rounded-3xl p-7 sm:p-8 theme-card border-emerald-500/40 hover:border-emerald-500 flex flex-col sm:flex-row items-start gap-6">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-theme-emerald flex items-center justify-center">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 data-i18n="feat4Title" class="text-xl font-bold text-theme-primary mb-2">
+                Monthly Fee Policy & Progress Tests
+              </h3>
+              <p data-i18n="feat4Desc" class="text-sm sm:text-base text-theme-secondary leading-relaxed">
+                Regular monthly evaluations. Under the monthly plan, ₹400 must be paid at the beginning of each month to attend that month's classes; if unpaid, classes for the next month will not be available until paid.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4: COURSE PACKAGES & FEES (#packages)
+    ========================================================== -->
+    <section id="packages" class="py-16 sm:py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span data-i18n="packagesTag" class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#D4AF37]/15 text-theme-gold border border-[#D4AF37]/30 mb-3">
+            Transparent & Affordable
+          </span>
+          <h2 data-i18n="packagesHeading" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-theme-primary mb-4">
+            Course Packages & Fees
+          </h2>
+          <p data-i18n="packagesSubheading" class="text-sm sm:text-base text-theme-muted">
+            Choose between paying monthly or saving ₹200 with our one-time 3-month combo payment.
+          </p>
+        </div>
+
+        <!-- Top Fee Highlight Banner -->
+        <div class="max-w-5xl mx-auto mb-12 rounded-3xl p-6 sm:p-8 border border-[#D4AF37]/50 bg-gradient-to-br from-[#062816] via-[#0B1120] to-[#062816] text-white shadow-xl">
+          <!-- Top Summary Strip -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pb-6 border-b border-emerald-800/70 text-center">
+            <div>
+              <span data-i18n="bannerAdmissionLabel" class="block text-xs uppercase tracking-wider text-emerald-300 font-semibold mb-1">One-Time Admission Fee</span>
+              <span class="text-2xl sm:text-3xl font-extrabold text-[#FBBF24]">₹500</span>
+              <span data-i18n="bannerAdmissionSub" class="block text-xs text-slate-300 mt-0.5">(One-time only)</span>
+            </div>
+            <div class="pt-3 sm:pt-0 sm:border-l border-emerald-800/70">
+              <span data-i18n="bannerMonthlyLabel" class="block text-xs uppercase tracking-wider text-emerald-300 font-semibold mb-1">Option A: Monthly Payment</span>
+              <span class="text-2xl sm:text-3xl font-extrabold text-white">₹400 <span data-i18n="bannerPerMonth" class="text-sm font-medium text-slate-300">/ month</span></span>
+              <span data-i18n="bannerMonthlyNote" class="block text-xs text-amber-300 mt-0.5">Paid at start of every month</span>
+            </div>
+            <div class="pt-3 sm:pt-0 sm:border-l border-emerald-800/70">
+              <span data-i18n="bannerComboLabel" class="block text-xs uppercase tracking-wider text-emerald-300 font-semibold mb-1">Option B: 3-Month Combo</span>
+              <span class="text-2xl sm:text-3xl font-extrabold text-emerald-400">₹1,500 <span data-i18n="bannerTotalTag" class="text-sm font-medium text-slate-300">Total</span></span>
+              <span data-i18n="bannerComboNote" class="block text-xs text-emerald-200 mt-0.5">₹500 Admission + ₹1,000 (Save ₹200)</span>
+            </div>
+          </div>
+
+          <!-- Two Payment Options Comparison -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
+            <div class="rounded-2xl p-4 bg-white/5 border border-white/10">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <h4 data-i18n="policyOptionATitle" class="font-bold text-sm sm:text-base text-amber-300">
+                  Option A: Monthly Pay-As-You-Go
+                </h4>
+              </div>
+              <p data-i18n="policyOptionADesc" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Pay ₹500 Admission Fee + ₹400/month at the start of every month. Classes continue only for paid months; if unpaid, classes will not be held until the monthly fee is paid.
+              </p>
+            </div>
+
+            <div class="rounded-2xl p-4 bg-emerald-500/15 border border-emerald-400/35">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <h4 data-i18n="policyOptionBTitle" class="font-bold text-sm sm:text-base text-emerald-300">
+                  Option B: 3-Month Combo One-Time Payment
+                </h4>
+              </div>
+              <p data-i18n="policyOptionBDesc" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Pay ₹500 Admission Fee + ₹1,000 for 3 Months = ₹1,500 Total one-time payment. Save ₹200 compared to ₹1,700 monthly total with uninterrupted 3-month access.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Interactive Package Cards (NO "Tajweed Only" Package) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
+
+          <!-- Package 1: 3-Month Complete Quran, Tajweed & Noorani Qaida Combo (Most Popular) -->
+          <div class="rounded-3xl p-7 sm:p-8 theme-card border-2 border-[#D4AF37] flex flex-col justify-between relative shadow-gold-glow">
+            <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-[#D4AF37] to-amber-500 text-slate-950 shadow-md">
+              <span data-i18n="pkg1OfferTag">Most Popular • Save ₹200</span>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span data-i18n="pkg1Badge" class="px-3 py-1 rounded-full text-xs font-bold bg-[#D4AF37]/20 text-theme-gold">
+                  Package 1 • Ages 7+
+                </span>
+                <span data-i18n="pkg1Duration" class="text-xs font-bold text-theme-muted theme-card-subtle px-3 py-1 rounded-full">
+                  Duration: 3 Months
+                </span>
+              </div>
+
+              <h3 data-i18n="pkg1Title" class="text-xl sm:text-2xl font-extrabold text-theme-primary mb-2">
+                3-Month Complete Quran, Tajweed & Noorani Qaida Combo
+              </h3>
+              <p data-i18n="pkg1Subtitle" class="text-xs font-semibold text-theme-gold mb-4">
+                Full Quran & Tajweed Mastery Track (Ages 7+)
+              </p>
+
+              <div class="mb-6 p-3.5 rounded-2xl bg-amber-500/10 border border-[#D4AF37]/35">
+                <div class="flex items-baseline gap-2.5">
+                  <span class="text-lg font-bold text-theme-muted line-through">₹1,700</span>
+                  <span class="text-3xl font-extrabold text-theme-gold">₹1,500</span>
+                  <span data-i18n="pkg1TotalLabel" class="text-xs font-bold text-theme-secondary">Total One-Time</span>
+                </div>
+                <span data-i18n="pkg1Breakdown" class="block text-xs font-semibold text-theme-emerald mt-1">
+                  ₹1,000 Course Fee + ₹500 Admission (Save ₹200)
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-sm text-theme-secondary mb-8">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkg1Item1">Quran Reading + Tajweed + Noorani Qaida</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkg1Item2">Uninterrupted 3-month access • Saves ₹200</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkgCommon1">Interactive Live Online Classes • 3 Days a Week (Ages 7+)</span>
+                </li>
+              </ul>
+            </div>
+
+            <button type="button" data-select-pkg="pkg1" class="w-full py-3.5 px-6 rounded-2xl font-bold text-sm sm:text-base bg-gradient-to-r from-[#D4AF37] to-amber-500 hover:from-amber-400 hover:to-[#D4AF37] text-slate-950 shadow-md shadow-amber-500/25 transition-all active:scale-95 cursor-pointer">
+              <span data-i18n="selectPkgBtn">Select Package</span>
+            </button>
+          </div>
+
+          <!-- Package 2: Monthly Quran, Tajweed & Noorani Qaida Plan -->
+          <div class="rounded-3xl p-7 sm:p-8 theme-card flex flex-col justify-between hover:border-emerald-500/75">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span data-i18n="pkg2Badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-theme-emerald">
+                  Package 2 • Ages 7+
+                </span>
+                <span data-i18n="pkg2Duration" class="text-xs font-bold text-theme-muted theme-card-subtle px-3 py-1 rounded-full">
+                  Duration: Monthly
+                </span>
+              </div>
+
+              <h3 data-i18n="pkg2Title" class="text-xl sm:text-2xl font-extrabold text-theme-primary mb-2">
+                Monthly Quran, Tajweed & Noorani Qaida Plan
+              </h3>
+              <p data-i18n="pkg2Subtitle" class="text-xs font-semibold text-theme-emerald mb-4">
+                Pay-As-You-Go Monthly Plan (Ages 7+)
+              </p>
+
+              <div class="mb-6 p-3.5 rounded-2xl theme-card-subtle">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-3xl font-extrabold text-theme-emerald">₹400</span>
+                  <span data-i18n="pkg2PerMonth" class="text-xs font-bold text-theme-secondary">/ month</span>
+                </div>
+                <span data-i18n="pkg2AdmissionNote" class="block text-xs font-semibold text-theme-muted mt-1">
+                  + ₹500 One-Time Admission Fee
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-sm text-theme-secondary mb-8">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkg2Item1">Quran Reading + Tajweed + Noorani Qaida</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span data-i18n="pkg2Item2">Pay ₹400 at start of each month; classes pause if unpaid</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkgCommon1">Interactive Live Online Classes • 3 Days a Week (Ages 7+)</span>
+                </li>
+              </ul>
+            </div>
+
+            <button type="button" data-select-pkg="pkg2" class="w-full py-3.5 px-6 rounded-2xl font-bold text-sm sm:text-base bg-slate-900 hover:bg-emerald-600 text-white transition-all active:scale-95 cursor-pointer">
+              <span data-i18n="selectPkgBtn">Select Package</span>
+            </button>
+          </div>
+
+          <!-- Package 3: Essential Fiqh, Sunnah Prayers & Daily Duas (3-Month Course) -->
+          <div class="rounded-3xl p-7 sm:p-8 theme-card border-2 border-emerald-500/65 flex flex-col justify-between relative">
+            <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-md">
+              <span data-i18n="pkg3OfferTag">Ages 7+ • Practical Fiqh</span>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span data-i18n="pkg3Badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-theme-emerald">
+                  Package 3 • Ages 7+
+                </span>
+                <span data-i18n="pkg3Duration" class="text-xs font-bold text-theme-muted theme-card-subtle px-3 py-1 rounded-full">
+                  Duration: 3 Months
+                </span>
+              </div>
+
+              <h3 data-i18n="pkg3Title" class="text-xl sm:text-2xl font-extrabold text-theme-primary mb-2">
+                Essential Fiqh, Sunnah Prayers & Daily Duas (3-Month Course)
+              </h3>
+              <p data-i18n="pkg3Subtitle" class="text-xs font-semibold text-theme-emerald mb-4">
+                Daily Namaz, Sunnah Prayers & Essential Duas (Ages 7+)
+              </p>
+
+              <div class="mb-6 p-3.5 rounded-2xl theme-card-subtle">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-3xl font-extrabold text-theme-emerald">₹1,500</span>
+                  <span data-i18n="pkg3TotalOrMonthly" class="text-xs font-bold text-theme-secondary">Total (or ₹400/mo)</span>
+                </div>
+                <span data-i18n="pkg3Breakdown" class="block text-xs font-semibold text-theme-muted mt-1">
+                  ₹1,000 + ₹500 Admission = ₹1,500 Total (or ₹400/month)
+                </span>
+              </div>
+
+              <ul class="space-y-3 text-sm text-theme-secondary mb-8">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkg3Item1">Namaz, Sunnah Prayers & Mayyith Namaz</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkg3Item2">Daily Duas (Bathroom, Sleeping, etc.), Short Hadiths & Dhikr</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span data-i18n="pkgCommon1">Interactive Live Online Classes • 3 Days a Week (Ages 7+)</span>
+                </li>
+              </ul>
+            </div>
+
+            <button type="button" data-select-pkg="pkg3" class="w-full py-3.5 px-6 rounded-2xl font-bold text-sm sm:text-base bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white shadow-md shadow-emerald-600/25 transition-all active:scale-95 cursor-pointer">
+              <span data-i18n="selectPkgBtn">Select Package</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Payment Methods Box (#payment-methods) -->
+        <div id="payment-methods" class="mt-16 scroll-mt-28 rounded-3xl p-7 sm:p-9 theme-card">
+          <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div class="text-center lg:text-left">
+              <span data-i18n="paymentTag" class="inline-block text-xs font-bold uppercase tracking-wider text-theme-emerald mb-1">
+                Easy & Secure Fee Payment
+              </span>
+              <h3 data-i18n="paymentHeading" class="text-xl sm:text-2xl font-extrabold text-theme-primary">
+                Accepted Payment Methods
+              </h3>
+              <p data-i18n="paymentSubtext" class="text-sm text-theme-muted mt-1">
+                Convenient digital payment options available for all students.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full lg:w-auto">
+              <!-- GPay -->
+              <div class="flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl theme-card-subtle font-bold text-sm text-theme-primary">
+                <span class="w-7 h-7 rounded-lg bg-blue-500/15 text-blue-500 flex items-center justify-center font-extrabold text-xs">G</span>
+                <span>GPay</span>
+              </div>
+
+              <!-- PhonePe -->
+              <div class="flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl theme-card-subtle font-bold text-sm text-theme-primary">
+                <span class="w-7 h-7 rounded-lg bg-purple-500/15 text-purple-500 flex items-center justify-center font-extrabold text-xs">Pe</span>
+                <span>PhonePe</span>
+              </div>
+
+              <!-- UPI -->
+              <div class="flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl theme-card-subtle font-bold text-sm text-theme-primary">
+                <span class="w-7 h-7 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-extrabold text-xs">UPI</span>
+                <span>UPI</span>
+              </div>
+
+              <!-- Bank Transfer -->
+              <div class="flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl theme-card-subtle font-bold text-sm text-theme-primary">
+                <svg class="w-5 h-5 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                </svg>
+                <span data-i18n="paymentBank">Bank Transfer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5: STUDENT REGISTRATION FORM (#registration)
+    ========================================================== -->
+    <section id="registration" class="py-16 sm:py-24 relative">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="rounded-3xl p-7 sm:p-10 md:p-12 theme-card border-emerald-500/35 shadow-2xl relative overflow-hidden">
+          <!-- Subtle top gold-emerald accent bar -->
+          <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-[#D4AF37] to-emerald-500"></div>
+
+          <div class="text-center mb-8">
+            <span data-i18n="regTag" class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/15 text-theme-emerald border border-emerald-500/30 mb-3">
+              Free Demo & Enrollment
+            </span>
+            <h2 data-i18n="regHeading" class="text-2xl sm:text-3xl font-extrabold text-theme-primary mb-2">
+              Student Registration Form
+            </h2>
+            <p data-i18n="regSubheading" class="text-sm sm:text-base text-theme-muted">
+              Fill in the details below and submit directly via WhatsApp to book your free demo class or enroll.
+            </p>
+          </div>
+
+          <form id="registrationForm" novalidate class="space-y-5">
+
+            <!-- 1. Student Name -->
+            <div>
+              <label for="studentName" class="block text-sm font-bold text-theme-primary mb-2">
+                <span data-i18n="labelName">Student Name</span> <span class="text-rose-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="studentName"
+                name="studentName"
+                required
+                data-i18n-placeholder="placeholderName"
+                placeholder="Enter student's full name"
+                class="w-full px-4 py-3.5 rounded-2xl theme-input focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              />
+              <p id="errorName" class="hidden mt-1.5 text-xs font-semibold text-rose-500"></p>
+            </div>
+
+            <!-- 2. Age & 5. WhatsApp Number -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Age -->
+              <div>
+                <label for="studentAge" class="block text-sm font-bold text-theme-primary mb-2">
+                  <span data-i18n="labelAge">Age</span> <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="studentAge"
+                  name="studentAge"
+                  min="7"
+                  max="100"
+                  required
+                  data-i18n-placeholder="placeholderAge"
+                  placeholder="e.g. 12"
+                  class="w-full px-4 py-3.5 rounded-2xl theme-input focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                />
+                <p data-i18n="ageHelperNote" class="mt-1.5 text-[11px] font-medium text-theme-emerald">
+                  Both courses are open to students aged 7 years and above (7+).
+                </p>
+                <p id="errorAge" class="hidden mt-1 text-xs font-semibold text-rose-500"></p>
+              </div>
+
+              <!-- WhatsApp Number -->
+              <div>
+                <label for="whatsappNumber" class="block text-sm font-bold text-theme-primary mb-2">
+                  <span data-i18n="labelWhatsapp">WhatsApp Number</span> <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="whatsappNumber"
+                  name="whatsappNumber"
+                  required
+                  data-i18n-placeholder="placeholderWhatsapp"
+                  placeholder="e.g. +91 9876543210"
+                  class="w-full px-4 py-3.5 rounded-2xl theme-input focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                />
+                <p id="errorWhatsapp" class="hidden mt-1.5 text-xs font-semibold text-rose-500"></p>
+              </div>
+            </div>
+
+            <!-- 3. Current Level -->
+            <div>
+              <label for="currentLevel" class="block text-sm font-bold text-theme-primary mb-2">
+                <span data-i18n="labelLevel">Current Level</span> <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <select
+                  id="currentLevel"
+                  name="currentLevel"
+                  required
+                  class="w-full appearance-none px-4 py-3.5 pr-10 rounded-2xl theme-input focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer"
+                >
+                  <option value="level1" data-i18n="levelOpt1">Complete Beginner</option>
+                  <option value="level2" data-i18n="levelOpt2">Knows Arabic Letters Only</option>
+                  <option value="level3" data-i18n="levelOpt3">Can Read a Little</option>
+                  <option value="level4" data-i18n="levelOpt4">Can Read Quran</option>
+                  <option value="level5" data-i18n="levelOpt5">Can Read, Want to Learn Tajweed</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-theme-muted">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Select Package -->
+            <div>
+              <label for="selectedPackage" class="block text-sm font-bold text-theme-primary mb-2">
+                <span data-i18n="labelPackage">Select Package</span> <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <select
+                  id="selectedPackage"
+                  name="selectedPackage"
+                  required
+                  class="w-full appearance-none px-4 py-3.5 pr-10 rounded-2xl theme-input focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer"
+                >
+                  <option value="pkg1" data-i18n="pkgOpt1">Package 1 - 3-Month Complete Quran, Tajweed & Noorani Qaida Combo (₹1,500 Total One-Time)</option>
+                  <option value="pkg2" data-i18n="pkgOpt2">Package 2 - Monthly Quran, Tajweed & Noorani Qaida Plan (₹400/month + ₹500 Admission)</option>
+                  <option value="pkg3" data-i18n="pkgOpt3">Package 3 - Essential Fiqh, Sunnah Prayers & Daily Duas - 3 Months (₹1,500 Total or ₹400/month)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-theme-muted">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-3">
+              <button
+                type="submit"
+                class="w-full inline-flex items-center justify-center gap-3 py-4 px-8 rounded-2xl font-extrabold text-base sm:text-lg text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 shadow-emerald-glow hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+              >
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2c-.151.512.326.989.838.838l3.032-.892A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+                </svg>
+                <span data-i18n="submitBtn">Register via WhatsApp</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       SECTION 6: CONTACT US & FOOTER (#contact)
+  ========================================================== -->
+  <footer id="contact" class="relative z-10 theme-footer pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Contact Card Banner -->
+      <div class="rounded-3xl p-8 sm:p-10 border border-emerald-500/35 bg-gradient-to-br from-[#062816] via-[#0B1120] to-[#060A14] text-white shadow-2xl mb-12 flex flex-col xl:flex-row items-center justify-between gap-8">
+        <div class="flex flex-col sm:flex-row items-center xl:items-start text-center sm:text-left gap-5 max-w-xl">
+          <!-- Custom Logo in Footer Contact Banner -->
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden logo-frame flex-shrink-0">
+            <img
+              src="image_5d0c64.png"
+              alt="Quran.tutor Logo"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'"
+            />
+          </div>
+          <div>
+            <span data-i18n="contactTag" class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#D4AF37]/20 text-[#FBBF24] border border-[#D4AF37]/30 mb-3">
+              Get In Touch
+            </span>
+            <h2 data-i18n="contactHeading" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+              Contact Us
+            </h2>
+            <p data-i18n="contactSubtext" class="text-sm sm:text-base text-slate-300">
+              Have questions about our courses or free demo class? Reach out directly on Phone, WhatsApp, or Instagram.
+            </p>
+          </div>
+        </div>
+
+        <!-- Direct Contact Channels: WhatsApp / Phone & Official Instagram -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full xl:w-auto">
+          <!-- Channel 1: WhatsApp / Phone -->
+          <div class="rounded-2xl p-4 bg-slate-900/85 border border-emerald-500/35 flex flex-col justify-between gap-3.5 min-w-[250px]">
+            <a href="tel:+919446807161" class="flex items-center gap-3 text-white hover:text-[#FBBF24] transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <span data-i18n="phoneLabel" class="block text-[11px] uppercase tracking-wider text-slate-400">Phone / WhatsApp</span>
+                <span class="font-extrabold text-base tracking-wide">+91 9446807161</span>
+              </div>
+            </a>
+
+            <a href="https://wa.me/919446807161" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white shadow-emerald-glow transition-all active:scale-95">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2c-.151.512.326.989.838.838l3.032-.892A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+              </svg>
+              <span data-i18n="chatWhatsappBtn">Chat on WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Channel 2: Official Instagram (@quran.__tutor) -->
+          <div class="rounded-2xl p-4 bg-slate-900/85 border border-pink-500/35 flex flex-col justify-between gap-3.5 min-w-[250px]">
+            <a
+              href="https://www.instagram.com/quran.__tutor?utm_source=ig_web_button_share_sheet&knvt=ZDNlZDc0MzIxNw=="
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-white hover:text-pink-300 transition-colors"
+            >
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <span data-i18n="instaLabel" class="block text-[11px] uppercase tracking-wider text-slate-400">Official Instagram</span>
+                <span class="font-extrabold text-base tracking-wide">@quran.__tutor</span>
+              </div>
+            </a>
+
+            <a
+              href="https://www.instagram.com/quran.__tutor?utm_source=ig_web_button_share_sheet&knvt=ZDNlZDc0MzIxNw=="
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-amber-500 via-pink-500 to-purple-600 hover:from-amber-400 hover:via-pink-400 hover:to-purple-500 text-white shadow-md shadow-pink-500/25 transition-all active:scale-95"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+              <span data-i18n="followInstaBtn">Follow on Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Row -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-theme-main text-xs sm:text-sm text-theme-muted">
+        <div class="flex items-center gap-2.5 font-bold text-theme-primary">
+          <img
+            src="image_5d0c64.png"
+            alt="Quran.tutor"
+            class="w-7 h-7 rounded-xl object-cover border border-[#D4AF37]/60"
+            onerror="this.style.display='none'"
+          />
+          <span data-i18n="footerBrand">Quran & Tajweed Online Academy</span>
+        </div>
+
+        <!-- Clickable Social Icon Links in Footer Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="https://www.instagram.com/quran.__tutor?utm_source=ig_web_button_share_sheet&knvt=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow @quran.__tutor on Instagram"
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl theme-card-subtle hover:border-pink-500/60 text-xs font-bold text-theme-primary transition-all"
+          >
+            <span class="w-5 h-5 rounded-md bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </span>
+            <span>@quran.__tutor</span>
+          </a>
+
+          <a
+            href="https://wa.me/919446807161"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp +91 9446807161"
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl theme-card-subtle hover:border-emerald-500/60 text-xs font-bold text-theme-primary transition-all"
+          >
+            <span class="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2c-.151.512.326.989.838.838l3.032-.892A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+              </svg>
+            </span>
+            <span>+91 9446807161</span>
+          </a>
+        </div>
+
+        <div data-i18n="footerRights" class="text-center md:text-right">
+          © 2026 Quran & Tajweed Online Academy. All rights reserved.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       ROCK-SOLID JAVASCRIPT: I18N, THEME TOGGLE, SCROLL & WHATSAPP
+  ========================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      // Complete English & Malayalam Translation Dictionary
+      const translations = {
+        en: {
+          brandTitle: "Quran & Tajweed Online Academy",
+          brandSubtitle: "ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി",
+          themeDay: "Day Mode",
+          themeNight: "Night Mode",
+
+          // Navigation & Quick Directory
+          navHome: "Home",
+          navCourses: "Our Courses",
+          navFeatures: "Why Choose Us",
+          navPackages: "Packages & Fees",
+          navPayments: "Payment Methods",
+          navRegister: "Registration",
+          navContact: "Contact Us",
+
+          dirHome: "Home",
+          dirCourses: "Our Courses",
+          dirFeatures: "Why Choose Us",
+          dirPackages: "Packages & Fees",
+          dirPayments: "Payment Methods",
+          dirRegister: "Registration & Free Demo",
+          dirContact: "Contact Us",
+          quickNavLabel: "Quick Section Navigator",
+
+          // Hero Section
+          heroBadge: "Interactive Live Online Quran & Tajweed Learning (Ages 7+)",
+          heroTitle: "Learn to Read the Holy Quran Fluently with Proper Pronunciation (Tajweed).",
+          heroSubtext: "An online platform for anyone aged 7 and above to learn Quran recitation and essential daily Islamic practices from the comfort of home with experienced Ustads.",
+          heroCta: "Book a Free Demo Class",
+          heroSecondaryCta: "Explore Packages & Fees",
+          heroInstaPill: "Follow @quran.__tutor on Instagram",
+          // Courses Section
+          coursesTag: "Structured Curriculum • Ages 7+",
+          coursesHeading: "Our Courses",
+          coursesSubheading: "Two comprehensive learning tracks designed for students aged 7 and above (7+) — covering complete Quran, Tajweed & Noorani Qaida mastery as well as essential daily Fiqh & Duas.",
+          courseAge7Plus: "Ages 7 & Above (7+)",
+          course1TrackLabel: "Track 01 • Complete Quran Mastery",
+          course1Title: "Complete Quran Reading, Tajweed & Noorani Qaida",
+          course1Desc: "Step-by-step mastery of the Arabic alphabet, articulation points (Makharij), vowel markings (Harakat), essential Tajweed rules, and fluent Mushaf reading (Nazira) from basics to fluency.",
+          course1Mod1: "Noorani Qaida: Arabic alphabet, articulation points (Makharij) & Harakat",
+          course1Mod2: "Tajweed Rules: Essential pronunciation rules with clear examples",
+          course1Mod3: "Quran Reading (Nazira): Fluent, mistake-free Mushaf recitation",
+          course2TrackLabel: "Track 02 • 3-Month Practical Module",
+          course2Title: "Essential Fiqh, Sunnah Prayers & Daily Duas",
+          course2Desc: "Practical 3-month module covering daily Namaz & Sunnah prayers, Mayyith Namaz, essential daily Duas (bathroom, sleeping, waking up, eating, etc.), short Hadiths, and everyday Dhikr.",
+          course2Mod1: "Prayers (Namaz): Daily Fard, Sunnah Prayers & Mayyith Namaz",
+          course2Mod2: "Daily Duas: Bathroom, sleeping, waking up, eating & daily routines",
+          course2Mod3: "Hadith & Dhikr: Short Hadiths & everyday Masnoon Adhkar",
+          courseBadgeLive: "Live Online Classes • 3 Days/Week",
+          courseBadgeFiqh: "3-Month Module • Ages 7+",
+          courseEnrollBtn: "Enroll in This Course",
+          featuresTag: "Learning Method & Academy Rules",
+          featuresHeading: "Why Choose Us",
+          featuresSubheading: "Dedicated personal mentorship, clear 7+ age eligibility across both courses, and transparent fee policies.",
+          feat1Title: "Interactive Live Online Classes",
+          feat1Desc: "Interactive live online sessions with personal guidance from experienced Ustads.",
+          feat2Title: "3 Days a Week Schedule",
+          feat2Desc: "Classes will be held 3 days a week for steady, structured progress.",
+          feat3Title: "Separate Batches & 7+ Eligibility",
+          feat3Desc: "Separate batches for kids, adults, and women. Both courses are open to students aged 7 years and above (7+).",
+          feat4Title: "Monthly Fee Policy & Progress Tests",
+          feat4Desc: "Regular monthly evaluations. Under the monthly plan, ₹400 must be paid at the beginning of each month to attend that month's classes; if unpaid, classes for the next month will not be available until paid.",
+
+          // Packages & Fees Section
+          packagesTag: "Transparent & Affordable",
+          packagesHeading: "Course Packages & Fees",
+          packagesSubheading: "Choose between paying monthly or saving ₹200 with our one-time 3-month combo payment.",
+          bannerAdmissionLabel: "One-Time Admission Fee",
+          bannerAdmissionSub: "(One-time only)",
+          bannerMonthlyLabel: "Option A: Monthly Payment",
+          bannerPerMonth: "/ month",
+          bannerMonthlyNote: "Paid at start of every month",
+          bannerComboLabel: "Option B: 3-Month Combo",
+          bannerTotalTag: "Total",
+          bannerComboNote: "₹500 Admission + ₹1,000 (Save ₹200)",
+          policyOptionATitle: "Option A: Monthly Pay-As-You-Go",
+          policyOptionADesc: "Pay ₹500 Admission Fee + ₹400/month at the start of every month. Classes continue only for paid months; if unpaid, classes will not be held until the monthly fee is paid.",
+          policyOptionBTitle: "Option B: 3-Month Combo One-Time Payment",
+          policyOptionBDesc: "Pay ₹500 Admission Fee + ₹1,000 for 3 Months = ₹1,500 Total one-time payment. Save ₹200 compared to ₹1,700 monthly total with uninterrupted 3-month access.",
+
+          pkg1Badge: "Package 1 • Ages 7+",
+          pkg1Duration: "Duration: 3 Months",
+          pkg1OfferTag: "Most Popular • Save ₹200",
+          pkg1Title: "3-Month Complete Quran, Tajweed & Noorani Qaida Combo",
+          pkg1Subtitle: "Full Quran & Tajweed Mastery Track (Ages 7+)",
+          pkg1TotalLabel: "Total One-Time",
+          pkg1Breakdown: "₹1,000 Course Fee + ₹500 Admission (Save ₹200)",
+          pkg1Item1: "Quran Reading + Tajweed + Noorani Qaida",
+          pkg1Item2: "Uninterrupted 3-month access • Saves ₹200",
+
+          pkg2Badge: "Package 2 • Ages 7+",
+          pkg2Duration: "Duration: Monthly",
+          pkg2Title: "Monthly Quran, Tajweed & Noorani Qaida Plan",
+          pkg2Subtitle: "Pay-As-You-Go Monthly Plan (Ages 7+)",
+          pkg2PerMonth: "/ month",
+          pkg2AdmissionNote: "+ ₹500 One-Time Admission Fee",
+          pkg2Item1: "Quran Reading + Tajweed + Noorani Qaida",
+          pkg2Item2: "Pay ₹400 at start of each month; classes pause if unpaid",
+
+          pkg3Badge: "Package 3 • Ages 7+",
+          pkg3Duration: "Duration: 3 Months",
+          pkg3OfferTag: "Ages 7+ • Practical Fiqh",
+          pkg3Title: "Essential Fiqh, Sunnah Prayers & Daily Duas (3-Month Course)",
+          pkg3Subtitle: "Daily Namaz, Sunnah Prayers & Essential Duas (Ages 7+)",
+          pkg3TotalOrMonthly: "Total (or ₹400/mo)",
+          pkg3Breakdown: "₹1,000 + ₹500 Admission = ₹1,500 Total (or ₹400/month)",
+          pkg3Item1: "Namaz, Sunnah Prayers & Mayyith Namaz",
+          pkg3Item2: "Daily Duas (Bathroom, Sleeping, etc.), Short Hadiths & Dhikr",
+
+          pkgCommon1: "Interactive Live Online Classes • 3 Days a Week (Ages 7+)",
+          selectPkgBtn: "Select Package",
+
+          // Payment Methods
+          paymentTag: "Easy & Secure Fee Payment",
+          paymentHeading: "Accepted Payment Methods",
+          paymentSubtext: "Convenient digital payment options available for all students.",
+          paymentBank: "Bank Transfer",
+
+          // Registration Form
+          regTag: "Free Demo & Enrollment • Ages 7+",
+          regHeading: "Student Registration Form",
+          regSubheading: "Fill in the details below and submit directly via WhatsApp to book your free demo class or enroll.",
+          labelName: "Student Name",
+          placeholderName: "Enter student's full name",
+          labelAge: "Age",
+          placeholderAge: "e.g. 12",
+          ageHelperNote: "Both courses are open to students aged 7 years and above (7+).",
+          labelWhatsapp: "WhatsApp Number",
+          placeholderWhatsapp: "e.g. +91 9876543210",
+          labelLevel: "Current Level",
+          levelOpt1: "Complete Beginner",
+          levelOpt2: "Knows Arabic Letters Only",
+          levelOpt3: "Can Read a Little",
+          levelOpt4: "Can Read Quran",
+          levelOpt5: "Can Read, Want to Learn Tajweed",
+          labelPackage: "Select Package",
+          pkgOpt1: "Package 1 - 3-Month Complete Quran, Tajweed & Noorani Qaida Combo (₹1,500 Total One-Time)",
+          pkgOpt2: "Package 2 - Monthly Quran, Tajweed & Noorani Qaida Plan (₹400/month + ₹500 Admission)",
+          pkgOpt3: "Package 3 - Essential Fiqh, Sunnah Prayers & Daily Duas - 3 Months (₹1,500 Total or ₹400/month)",
+          submitBtn: "Register via WhatsApp",
+
+          // Validation Messages
+          errNameRequired: "Please enter the student's name.",
+          errAgeRequired: "Please enter a valid age (7 years and above).",
+          errWhatsappRequired: "Please enter a valid WhatsApp number (at least 10 digits).",
+
+          // WhatsApp Message Template
+          waHeader: "*New Student Registration - Quran & Tajweed Online Academy*",
+          waName: "Student Name",
+          waAge: "Age",
+          waLevel: "Current Level",
+          waPackage: "Selected Package",
+          waPhone: "WhatsApp Number",
+
+          // Contact & Footer
+          contactTag: "Get In Touch",
+          contactHeading: "Contact Us",
+          contactSubtext: "Have questions about our courses or free demo class? Reach out directly on Phone, WhatsApp, or Instagram.",
+          phoneLabel: "Phone / WhatsApp",
+          chatWhatsappBtn: "Chat on WhatsApp",
+          instaLabel: "Official Instagram",
+          followInstaBtn: "Follow on Instagram",
+          footerBrand: "Quran & Tajweed Online Academy",
+          footerRights: "© 2026 Quran & Tajweed Online Academy. All rights reserved."
+        },
+
+        ml: {
+          brandTitle: "ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി",
+          brandSubtitle: "Quran & Tajweed Online Academy",
+          themeDay: "ഡേ മോഡ്",
+          themeNight: "നൈറ്റ് മോഡ്",
+
+          // Navigation & Quick Directory
+          navHome: "ഹോം",
+          navCourses: "കോഴ്‌സുകൾ",
+          navFeatures: "പ്രത്യേകതകൾ",
+          navPackages: "പാക്കേജുകളും ഫീസും",
+          navPayments: "പേയ്‌മെന്റ് രീതികൾ",
+          navRegister: "രജിസ്ട്രേഷൻ",
+          navContact: "ബന്ധപ്പെടുക",
+
+          dirHome: "ഹോം",
+          dirCourses: "കോഴ്‌സുകൾ",
+          dirFeatures: "പ്രത്യേകതകൾ",
+          dirPackages: "പാക്കേജുകളും ഫീസും",
+          dirPayments: "പേയ്‌മെന്റ് രീതികൾ",
+          dirRegister: "രജിസ്ട്രേഷൻ & സൗജന്യ ഡെമോ",
+          dirContact: "ബന്ധപ്പെടുക",
+          quickNavLabel: "വേഗത്തിലുള്ള നാവിഗേഷൻ",
+
+          // Hero Section
+          heroBadge: "ലൈവ് ഓൺലൈൻ ഖുർആൻ & തജ്‌വീദ് പഠനം (7+ വയസ്സ്)",
+          heroTitle: "ശരിയായ ഉച്ചാരണത്തോടെ (തജ്‌വീദ്) വിശുദ്ധ ഖുർആൻ കണ്ടു ഓതാൻ എളുപ്പത്തിൽ പഠിക്കാം.",
+          heroSubtext: "7 വയസ്സിന് മുകളിലുള്ള ആർക്കും വീട്ടിലിരുന്ന് തന്നെ പരിചയസമ്പന്നരായ ഉസ്താദുമാരുടെ സഹായത്തോടെ ഖുർആൻ പാരായണവും നിത്യജീവിതത്തിലെ അത്യാവശ്യ ഫിഖ്ഹ് മസ്അലകളും പഠിക്കാനുള്ള ഓൺലൈൻ പ്ലാറ്റ്‌ഫോം.",
+          heroCta: "സൗജന്യ ഡെമോ ക്ലാസ് ബുക്ക് ചെയ്യുക",
+          heroSecondaryCta: "പാക്കേജുകളും ഫീസും കാണുക",
+          heroInstaPill: "ഇൻസ്റ്റാഗ്രാമിൽ @quran.__tutor ഫോളോ ചെയ്യുക",
+          // Courses Section
+          coursesTag: "പഠന പദ്ധതി • 7+ വയസ്സ്",
+          coursesHeading: "ഞങ്ങളുടെ കോഴ്‌സുകൾ",
+          coursesSubheading: "7 വയസ്സിന് മുകളിലുള്ള (7+) വിദ്യാർത്ഥികൾക്കായി രൂപകൽപ്പന ചെയ്ത രണ്ട് പ്രധാന കോഴ്‌സുകൾ — സമ്പൂർണ്ണ ഖുർആൻ, തജ്‌വീദ് & നൂറാനി ഖാഇദ പഠനവും അത്യാവശ്യ ഫിഖ്ഹ് & ദുആ കോഴ്‌സും.",
+          courseAge7Plus: "7 വയസ്സിന് മുകളിലുള്ളവർക്ക് (7+)",
+          course1TrackLabel: "കോഴ്സ് 01 • സമ്പൂർണ്ണ ഖുർആൻ പഠനം",
+          course1Title: "സമ്പൂർണ്ണ ഖുർആൻ പാരായണം, തജ്‌വീദ് & നൂറാനി ഖാഇദ",
+          course1Desc: "അറബി അക്ഷരമാല, അക്ഷരങ്ങളുടെ ഉച്ചാരണ സ്ഥാനങ്ങൾ (മഖാരിജ്), ഹറകത്തുകൾ, തജ്‌വീദ് നിയമങ്ങൾ, മുസ്ഹഫ് നോക്കി തെറ്റുകൂടാതെ വ്യക്തമായി ഓതാനുള്ള പരിശീലനം എന്നിവ അടിസ്ഥാനം മുതൽ പഠിപ്പിക്കുന്നു.",
+          course1Mod1: "നൂറാനി ഖാഇദ: അറബി അക്ഷരങ്ങൾ, മഖാരിജ് & ഹറകത്തുകൾ",
+          course1Mod2: "തജ്‌വീദ് നിയമങ്ങൾ: ഉദാഹരണസഹിതമുള്ള ശരിയായ ഉച്ചാരണ നിയമങ്ങൾ",
+          course1Mod3: "ഖുർആൻ റീഡിംഗ് (നാസിറ): മുസ്ഹഫ് നോക്കി തെറ്റുകൂടാതെ ഓതാനുള്ള പരിശീലനം",
+          course2TrackLabel: "കോഴ്സ് 02 • 3 മാസത്തെ പ്രായോഗിക കോഴ്സ്",
+          course2Title: "അത്യാവശ്യ ഫിഖ്ഹ് മസ്അലകളും ദൈനംദിന ദുആകളും",
+          course2Desc: "നിത്യജീവിതത്തിലെ നിർബന്ധവും സുന്നത്തുമായ നിസ്കാരങ്ങൾ, മയ്യത്ത് നിസ്കാരം, അത്യാവശ്യ ദുആകൾ (ബാത്റൂം, ഉറക്കം, ഉണരുമ്പോൾ, ഭക്ഷണം മുതലായവ), ചെറിയ ഹദീസുകൾ, ദിക്റുകൾ എന്നിവ ഉൾപ്പെടുന്ന 3 മാസത്തെ കോഴ്സ്.",
+          course2Mod1: "നിസ്കാരങ്ങൾ: അഞ്ച് നേരത്തെ നിസ്കാരം, സുന്നത്ത് നിസ്കാരങ്ങൾ & മയ്യത്ത് നിസ്കാരം",
+          course2Mod2: "ദൈനംദിന ദുആകൾ: ബാത്റൂം, ഉറക്കം, ഉണരുമ്പോൾ, ഭക്ഷണം മുതലായവയുടെ ദുആകൾ",
+          course2Mod3: "ഹദീസ് & ദിക്ർ: ചെറിയ ഹദീസുകളും നിത്യജീവിതത്തിലെ ദിക്റുകളും",
+          courseBadgeLive: "ലൈവ് ഓൺലൈൻ ക്ലാസുകൾ • ആഴ്ചയിൽ 3 ദിവസം",
+          courseBadgeFiqh: "3 മാസത്തെ കോഴ്സ് • 7+ വയസ്സ്",
+          courseEnrollBtn: "ഈ കോഴ്സിൽ ചേരുക",
+          featuresTag: "പഠന രീതിയും അക്കാദമി നിയമങ്ങളും",
+          featuresHeading: "എന്തുകൊണ്ട് ഞങ്ങളെ തിരഞ്ഞെടുക്കണം",
+          featuresSubheading: "ഓരോ വിദ്യാർത്ഥിക്കും വ്യക്തിഗത ശ്രദ്ധയും രണ്ട് കോഴ്‌സുകൾക്കും 7+ വയസ്സ് പ്രായപരിധിയും സുതാര്യമായ ഫീസ് നിയമങ്ങളും.",
+          feat1Title: "ലൈവ് ഓൺലൈൻ ക്ലാസുകൾ",
+          feat1Desc: "പരിചയസമ്പന്നരായ ഉസ്താദുമാരുടെ നേരിട്ടുള്ള മേൽനോട്ടത്തിൽ ലൈവ് ഓൺലൈൻ ക്ലാസുകൾ.",
+          feat2Title: "ആഴ്ചയിൽ 3 ദിവസം ക്ലാസുകൾ",
+          feat2Desc: "ചിട്ടയായ പഠന പുരോഗതിക്കായി ആഴ്ചയിൽ 3 ദിവസമായിരിക്കും ക്ലാസുകൾ.",
+          feat3Title: "പ്രത്യേക ബാച്ചുകളും 7+ പ്രായപരിധിയും",
+          feat3Desc: "കുട്ടികൾക്കും മുതിർന്നവർക്കും സ്ത്രീകൾക്കും വെവ്വേറെ ബാച്ചുകൾ. രണ്ട് കോഴ്‌സുകളിലും 7 വയസ്സിന് മുകളിലുള്ള (7+) എല്ലാവർക്കും ചേരാവുന്നതാണ്.",
+          feat4Title: "മാസഫീസ് നിബന്ധനകളും പുരോഗതി വിലയിരുത്തലും",
+          feat4Desc: "എല്ലാ മാസവും പുരോഗതി വിലയിരുത്തൽ. ഓരോ മാസവും തുടങ്ങുമ്പോൾ ₹400 അടച്ചാലേ ആ മാസത്തെ ക്ലാസുകൾ ലഭിക്കുകയുള്ളൂ; ഫീസ് അടയ്ക്കാത്ത പക്ഷം അടുത്ത മാസത്തെ ക്ലാസുകൾ ഉണ്ടായിരിക്കുന്നതല്ല.",
+
+          // Packages & Fees Section
+          packagesTag: "മിതമായ ഫീസ് നിരക്കുകൾ",
+          packagesHeading: "കോഴ്‌സ് പാക്കേജുകളും ഫീസും",
+          packagesSubheading: "മാസാമാസം അടയ്ക്കുന്ന രീതിയോ അല്ലെങ്കിൽ ₹200 ലാഭിച്ച് 3 മാസത്തെ ഒറ്റത്തവണ കോംബോ പാക്കേജോ തിരഞ്ഞെടുക്കാം.",
+          bannerAdmissionLabel: "ഒറ്റത്തവണ അഡ്മിഷൻ ഫീസ്",
+          bannerAdmissionSub: "(ഒറ്റത്തവണ മാത്രം)",
+          bannerMonthlyLabel: "പ്രതിമാസ പേയ്‌മെന്റ്",
+          bannerPerMonth: "/ മാസം",
+          bannerMonthlyNote: "ഓരോ മാസവും തുടങ്ങുമ്പോൾ അടയ്ക്കണം",
+          bannerComboLabel: "3 മാസത്തെ കോംബോ",
+          bannerTotalTag: "ആകെ",
+          bannerComboNote: "₹500 അഡ്മിഷൻ + ₹1,000 (₹200 ലാഭം)",
+          policyOptionATitle: "രീതി A: പ്രതിമാസ പേയ്‌മെന്റ് (₹400 / മാസം)",
+          policyOptionADesc: "₹500 അഡ്മിഷൻ ഫീസും ഓരോ മാസവും തുടങ്ങുമ്പോൾ ₹400 വീതവും അടയ്ക്കണം. ഫീസ് അടച്ചില്ലെങ്കിൽ അടുത്ത മാസം ക്ലാസ് ഉണ്ടാവില്ല.",
+          policyOptionBTitle: "രീതി B: 3 മാസത്തെ കോംബോ ഒറ്റത്തവണ പേയ്‌മെന്റ് (₹200 ലാഭം)",
+          policyOptionBDesc: "₹500 അഡ്മിഷൻ ഫീസും 3 മാസത്തെ ₹1,000 കോംബോ ഫീസും ചേർത്ത് ആകെ ₹1,500 ഒറ്റത്തവണയായി അടയ്ക്കാം. ₹200 ലാഭിക്കാം!",
+
+          pkg1Badge: "പാക്കേജ് 1 • 7+ വയസ്സ്",
+          pkg1Duration: "കാലാവധി: 3 മാസം",
+          pkg1OfferTag: "ഏറ്റവും ജനപ്രിയം • ₹200 ലാഭം",
+          pkg1Title: "3 മാസത്തെ സമ്പൂർണ്ണ ഖുർആൻ, തജ്‌വീദ് & നൂറാനി ഖാഇദ കോംബോ",
+          pkg1Subtitle: "ഖുർആൻ റീഡിംഗ് + തജ്‌വീദ് + നൂറാനി ഖാഇദ (7+ വയസ്സ്)",
+          pkg1TotalLabel: "ആകെ ഒറ്റത്തവണ",
+          pkg1Breakdown: "₹1,000 കോഴ്സ് ഫീസ് + ₹500 അഡ്മിഷൻ (₹200 ലാഭം)",
+          pkg1Item1: "ഖുർആൻ റീഡിംഗ് + തജ്‌വീദ് + നൂറാനി ഖാഇദ",
+          pkg1Item2: "3 മാസം തടസ്സമില്ലാത്ത ക്ലാസുകൾ • ₹200 ലാഭം",
+
+          pkg2Badge: "പാക്കേജ് 2 • 7+ വയസ്സ്",
+          pkg2Duration: "കാലാവധി: പ്രതിമാസം",
+          pkg2Title: "പ്രതിമാസ ഖുർആൻ, തജ്‌വീദ് & നൂറാനി ഖാഇദ പ്ലാൻ",
+          pkg2Subtitle: "മാസാമാസം ഫീസ് അടയ്ക്കുന്ന രീതി (7+ വയസ്സ്)",
+          pkg2PerMonth: "/ മാസം",
+          pkg2AdmissionNote: "+ ₹500 ഒറ്റത്തവണ അഡ്മിഷൻ ഫീസ്",
+          pkg2Item1: "ഖുർആൻ റീഡിംഗ് + തജ്‌വീദ് + നൂറാനി ഖാഇദ",
+          pkg2Item2: "മാസം തുടങ്ങുമ്പോൾ ₹400 അടയ്ക്കണം; അടയ്ക്കാത്ത മാസം ക്ലാസ് ഉണ്ടാവില്ല",
+
+          pkg3Badge: "പാക്കേജ് 3 • 7+ വയസ്സ്",
+          pkg3Duration: "കാലാവധി: 3 മാസം",
+          pkg3OfferTag: "7+ വയസ്സ് • പ്രായോഗിക ഫിഖ്ഹ്",
+          pkg3Title: "അത്യാവശ്യ ഫിഖ്ഹ്, സുന്നത്ത് നമസ്കാരങ്ങൾ & ദൈനംദിന ദുആകൾ (3 മാസം)",
+          pkg3Subtitle: "നിസ്കാരം, സുന്നത്ത് നിസ്കാരങ്ങൾ & ദൈനംദിന ദുആകൾ (7+ വയസ്സ്)",
+          pkg3TotalOrMonthly: "ആകെ (അല്ലെങ്കിൽ ₹400/മാസം)",
+          pkg3Breakdown: "₹1,000 + ₹500 അഡ്മിഷൻ = ആകെ ₹1,500 (അല്ലെങ്കിൽ ₹400/മാസം)",
+          pkg3Item1: "നിസ്കാരം, സുന്നത്ത് നമസ്കാരങ്ങൾ & മയ്യത്ത് നിസ്കാരം",
+          pkg3Item2: "നിത്യജീവിത ദുആകൾ (ബാത്റൂം, ഉറക്കം മുതലായവ), ചെറിയ ഹദീസുകൾ & ദിക്റുകൾ",
+
+          pkgCommon1: "ലൈവ് ഓൺലൈൻ ക്ലാസുകൾ • ആഴ്ചയിൽ 3 ദിവസം (7+ വയസ്സ്)",
+          selectPkgBtn: "പാക്കേജ് തിരഞ്ഞെടുക്കുക",
+
+          // Payment Methods
+          paymentTag: "സുരക്ഷിതമായ ഫീസ് അടയ്ക്കൽ",
+          paymentHeading: "സ്വീകരിക്കുന്ന പേയ്‌മെന്റ് രീതികൾ",
+          paymentSubtext: "എല്ലാ വിദ്യാർത്ഥികൾക്കും സൗകര്യപ്രദമായ ഡിജിറ്റൽ പേയ്‌മെന്റ് സൗകര്യങ്ങൾ.",
+          paymentBank: "ബാങ്ക് ട്രാൻസ്ഫർ",
+
+          // Registration Form
+          regTag: "സൗജന്യ ഡെമോ & അഡ്മിഷൻ • 7+ വയസ്സ്",
+          regHeading: "വിദ്യാർത്ഥി രജിസ്ട്രേഷൻ ഫോം",
+          regSubheading: "സൗജന്യ ഡെമോ ക്ലാസ് ബുക്ക് ചെയ്യുന്നതിനോ അഡ്മിഷൻ എടുക്കുന്നതിനോ താഴെ നൽകിയിരിക്കുന്ന വിവരങ്ങൾ പൂരിപ്പിച്ച് വാട്സ്ആപ്പ് വഴി അയക്കുക.",
+          labelName: "വിദ്യാർത്ഥിയുടെ പേര്",
+          placeholderName: "വിദ്യാർത്ഥിയുടെ മുഴുവൻ പേര് നൽകുക",
+          labelAge: "പ്രായം",
+          placeholderAge: "ഉദാ: 12",
+          ageHelperNote: "രണ്ട് കോഴ്‌സുകളിലും 7 വയസ്സിന് മുകളിലുള്ള (7+) എല്ലാവർക്കും ചേരാവുന്നതാണ്.",
+          labelWhatsapp: "വാട്സ്ആപ്പ് നമ്പർ",
+          placeholderWhatsapp: "ഉദാ: +91 9876543210",
+          labelLevel: "ഇപ്പോഴത്തെ നിലവാരം",
+          levelOpt1: "ഒട്ടും അറിയില്ല - തുടക്കക്കാരൻ",
+          levelOpt2: "അക്ഷരങ്ങൾ മാത്രം അറിയാം",
+          levelOpt3: "കുറച്ചൊക്കെ ഓതാൻ അറിയാം",
+          levelOpt4: "ഓതാൻ അറിയാം",
+          levelOpt5: "ഓതാൻ അറിയാം, തജ്‌വീദ് പഠിക്കണം",
+          labelPackage: "തിരഞ്ഞെടുക്കുന്ന പാക്കേജ്",
+          pkgOpt1: "പാക്കേജ് 1 - 3 മാസത്തെ സമ്പൂർണ്ണ ഖുർആൻ, തജ്‌വീദ് & നൂറാനി ഖാഇദ കോംബോ (ആകെ ₹1,500 ഒറ്റത്തവണ)",
+          pkgOpt2: "പാക്കേജ് 2 - പ്രതിമാസ ഖുർആൻ, തജ്‌വീദ് & നൂറാനി ഖാഇദ പ്ലാൻ (₹400/മാസം + ₹500 അഡ്മിഷൻ)",
+          pkgOpt3: "പാക്കേജ് 3 - അത്യാവശ്യ ഫിഖ്ഹ്, സുന്നത്ത് നമസ്കാരങ്ങൾ & ദൈനംദിന ദുആകൾ - 3 മാസം (ആകെ ₹1,500 അല്ലെങ്കിൽ ₹400/മാസം)",
+          submitBtn: "വാട്സ്ആപ്പ് വഴി രജിസ്റ്റർ ചെയ്യുക",
+
+          // Validation Messages
+          errNameRequired: "ദയവായി വിദ്യാർത്ഥിയുടെ പേര് നൽകുക.",
+          errAgeRequired: "ദയവായി ശരിയായ പ്രായം നൽകുക (7 വയസ്സും അതിന് മുകളിലും).",
+          errWhatsappRequired: "ദയവായി ശരിയായ വാട്സ്ആപ്പ് നമ്പർ നൽകുക (കുറഞ്ഞത് 10 അക്കങ്ങൾ).",
+
+          // WhatsApp Message Template
+          waHeader: "*പുതിയ വിദ്യാർത്ഥി രജിസ്ട്രേഷൻ - ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി*",
+          waName: "വിദ്യാർത്ഥിയുടെ പേര്",
+          waAge: "പ്രായം",
+          waLevel: "ഇപ്പോഴത്തെ നിലവാരം",
+          waPackage: "തിരഞ്ഞെടുത്ത പാക്കേജ്",
+          waPhone: "വാട്സ്ആപ്പ് നമ്പർ",
+
+          // Contact & Footer
+          contactTag: "ഞങ്ങളുമായി ബന്ധപ്പെടുക",
+          contactHeading: "ബന്ധപ്പെടുക",
+          contactSubtext: "കോഴ്‌സുകളെക്കുറിച്ചോ സൗജന്യ ഡെമോ ക്ലാസിനെക്കുറിച്ചോ അറിയാൻ ഫോൺ, വാട്സ്ആപ്പ്, അല്ലെങ്കിൽ ഇൻസ്റ്റാഗ്രാം വഴി ബന്ധപ്പെടുക.",
+          phoneLabel: "ഫോൺ / വാട്സ്ആപ്പ്",
+          chatWhatsappBtn: "വാട്സ്ആപ്പിൽ ചാറ്റ് ചെയ്യുക",
+          instaLabel: "ഔദ്യോഗിക ഇൻസ്റ്റാഗ്രാം",
+          followInstaBtn: "ഇൻസ്റ്റാഗ്രാമിൽ ഫോളോ ചെയ്യുക",
+          footerBrand: "ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി",
+          footerRights: "© 2026 ഖുർആൻ & തജ്‌വീദ് ഓൺലൈൻ അക്കാദമി. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം."
+        }
+      };
+
+      // State: Default Night Mode & English
+      let currentLang = "en";
+      let isDayMode = false;
+
+      // Safe localStorage helpers (never throw in sandboxed iframes)
+      function safeGetStorage(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function safeSetStorage(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (err) {
+          // Ignore storage restrictions in sandboxed environments
+        }
+      }
+
+      // Update Theme UI & CSS Classes
+      function applyTheme() {
+        const htmlEl = document.documentElement;
+        const bodyEl = document.body;
+        const sunIcon = document.getElementById("sunIcon");
+        const moonIcon = document.getElementById("moonIcon");
+        const mobileSunIcon = document.getElementById("mobileSunIcon");
+        const mobileMoonIcon = document.getElementById("mobileMoonIcon");
+        const themeToggleText = document.getElementById("themeToggleText");
+        const mobileThemeToggleText = document.getElementById("mobileThemeToggleText");
+
+        if (isDayMode) {
+          htmlEl.classList.add("day-mode");
+          bodyEl.classList.add("day-mode");
+          if (sunIcon) sunIcon.classList.add("hidden");
+          if (moonIcon) moonIcon.classList.remove("hidden");
+          if (mobileSunIcon) mobileSunIcon.classList.add("hidden");
+          if (mobileMoonIcon) mobileMoonIcon.classList.remove("hidden");
+        } else {
+          htmlEl.classList.remove("day-mode");
+          bodyEl.classList.remove("day-mode");
+          if (sunIcon) sunIcon.classList.remove("hidden");
+          if (moonIcon) moonIcon.classList.add("hidden");
+          if (mobileSunIcon) mobileSunIcon.classList.remove("hidden");
+          if (mobileMoonIcon) mobileMoonIcon.classList.add("hidden");
+        }
+
+        const dict = translations[currentLang] || translations.en;
+        const label = isDayMode ? dict.themeNight : dict.themeDay;
+        if (themeToggleText) themeToggleText.textContent = label;
+        if (mobileThemeToggleText) mobileThemeToggleText.textContent = label;
+      }
+
+      // Toggle Day/Night Mode
+      function toggleTheme() {
+        isDayMode = !isDayMode;
+        safeSetStorage("qtoa_theme_mode", isDayMode ? "day" : "night");
+        applyTheme();
+      }
+
+      // Update Language UI & Translate All DOM Elements
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLang = lang;
+        const dict = translations[lang];
+        document.documentElement.lang = lang;
+
+        // 1. Update all [data-i18n] elements (headings, nav, cards, options, buttons)
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key] !== undefined) {
+            el.textContent = dict[key];
+          }
+        });
+
+        // 2. Update all [data-i18n-placeholder] inputs
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+          const key = el.getAttribute("data-i18n-placeholder");
+          if (dict[key] !== undefined) {
+            el.setAttribute("placeholder", dict[key]);
+          }
+        });
+
+        // 3. Highlight Active Language Buttons (Desktop & Mobile)
+        const enBtns = [document.getElementById("langEnBtn"), document.getElementById("mobileLangEnBtn")];
+        const mlBtns = [document.getElementById("langMlBtn"), document.getElementById("mobileLangMlBtn")];
+
+        enBtns.forEach(function (btn) {
+          if (!btn) return;
+          if (lang === "en") {
+            btn.classList.add("bg-emerald-600", "text-white", "shadow-sm");
+            btn.classList.remove("text-theme-secondary");
+          } else {
+            btn.classList.remove("bg-emerald-600", "text-white", "shadow-sm");
+            btn.classList.add("text-theme-secondary");
+          }
+        });
+
+        mlBtns.forEach(function (btn) {
+          if (!btn) return;
+          if (lang === "ml") {
+            btn.classList.add("bg-emerald-600", "text-white", "shadow-sm");
+            btn.classList.remove("text-theme-secondary");
+          } else {
+            btn.classList.remove("bg-emerald-600", "text-white", "shadow-sm");
+            btn.classList.add("text-theme-secondary");
+          }
+        });
+
+        // 4. Refresh Theme Toggle Button label in active language
+        applyTheme();
+
+        // 5. Clear visible validation errors so stale language messages don't remain
+        clearAllFieldErrors();
+      }
+
+      // Expose functions globally as well
+      window.setLanguage = setLanguage;
+      window.toggleTheme = toggleTheme;
+
+      // Smooth Scroll with Sticky Navbar Offset
+      function smoothScrollToSection(targetId) {
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+        const navbar = document.getElementById("navbar");
+        const navHeight = navbar ? navbar.offsetHeight : 80;
+        const topPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 10;
+        window.scrollTo({
+          top: Math.max(0, topPosition),
+          behavior: "smooth"
+        });
+
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuOpenIcon = document.getElementById("menuOpenIcon");
+        const menuCloseIcon = document.getElementById("menuCloseIcon");
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          if (menuOpenIcon) menuOpenIcon.classList.remove("hidden");
+          if (menuCloseIcon) menuCloseIcon.classList.add("hidden");
+        }
+      }
+
+      // Package Selection -> Pre-fill Dropdown & Scroll to Registration Form
+      function selectPackageAndScroll(pkgValue) {
+        const pkgSelect = document.getElementById("selectedPackage");
+        if (pkgSelect) {
+          pkgSelect.value = pkgValue;
+          pkgSelect.classList.add("ring-2", "ring-emerald-500");
+          setTimeout(function () {
+            pkgSelect.classList.remove("ring-2", "ring-emerald-500");
+          }, 1600);
+        }
+        smoothScrollToSection("registration");
+      }
+
+      window.selectPackageAndScroll = selectPackageAndScroll;
+
+      // Validation Helper Functions
+      function setFieldError(inputEl, errorEl, message) {
+        if (!inputEl || !errorEl) return;
+        if (message) {
+          errorEl.textContent = message;
+          errorEl.classList.remove("hidden");
+          inputEl.classList.add("border-rose-500", "ring-2", "ring-rose-500/30");
+        } else {
+          errorEl.textContent = "";
+          errorEl.classList.add("hidden");
+          inputEl.classList.remove("border-rose-500", "ring-2", "ring-rose-500/30");
+        }
+      }
+
+      function clearAllFieldErrors() {
+        setFieldError(document.getElementById("studentName"), document.getElementById("errorName"), "");
+        setFieldError(document.getElementById("studentAge"), document.getElementById("errorAge"), "");
+        setFieldError(document.getElementById("whatsappNumber"), document.getElementById("errorWhatsapp"), "");
+      }
+
+      // Initialize Everything on DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Restore theme preference if previously saved, otherwise default to Night Mode
+        const savedTheme = safeGetStorage("qtoa_theme_mode");
+        isDayMode = savedTheme === "day";
+
+        // Attach Language Switch Listeners (Desktop & Mobile)
+        const langEnBtn = document.getElementById("langEnBtn");
+        const langMlBtn = document.getElementById("langMlBtn");
+        const mobileLangEnBtn = document.getElementById("mobileLangEnBtn");
+        const mobileLangMlBtn = document.getElementById("mobileLangMlBtn");
+
+        if (langEnBtn) langEnBtn.addEventListener("click", function () { setLanguage("en"); });
+        if (langMlBtn) langMlBtn.addEventListener("click", function () { setLanguage("ml"); });
+        if (mobileLangEnBtn) mobileLangEnBtn.addEventListener("click", function () { setLanguage("en"); });
+        if (mobileLangMlBtn) mobileLangMlBtn.addEventListener("click", function () { setLanguage("ml"); });
+
+        // Attach Theme Toggle Listeners (Desktop & Mobile)
+        const themeToggleBtn = document.getElementById("themeToggleBtn");
+        const mobileThemeToggleBtn = document.getElementById("mobileThemeToggleBtn");
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener("click", toggleTheme);
+        if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener("click", toggleTheme);
+
+        // Mobile Navigation Drawer Toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuOpenIcon = document.getElementById("menuOpenIcon");
+        const menuCloseIcon = document.getElementById("menuCloseIcon");
+
+        if (mobileMenuBtn && mobileMenu) {
+          mobileMenuBtn.addEventListener("click", function () {
+            const isHidden = mobileMenu.classList.contains("hidden");
+            if (isHidden) {
+              mobileMenu.classList.remove("hidden");
+              if (menuOpenIcon) menuOpenIcon.classList.add("hidden");
+              if (menuCloseIcon) menuCloseIcon.classList.remove("hidden");
+            } else {
+              mobileMenu.classList.add("hidden");
+              if (menuOpenIcon) menuOpenIcon.classList.remove("hidden");
+              if (menuCloseIcon) menuCloseIcon.classList.add("hidden");
+            }
+          });
+        }
+
+        // Smooth Scroll Links
+        document.querySelectorAll("[data-scroll-target]").forEach(function (anchor) {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = anchor.getAttribute("data-scroll-target");
+            smoothScrollToSection(targetId);
+          });
+        });
+
+        // Select Package Buttons
+        document.querySelectorAll("[data-select-pkg]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const pkgVal = btn.getAttribute("data-select-pkg");
+            selectPackageAndScroll(pkgVal);
+          });
+        });
+
+        // Form Validation & WhatsApp Submission
+        const registrationForm = document.getElementById("registrationForm");
+        const nameInput = document.getElementById("studentName");
+        const ageInput = document.getElementById("studentAge");
+        const whatsappInput = document.getElementById("whatsappNumber");
+        const levelSelect = document.getElementById("currentLevel");
+        const packageSelect = document.getElementById("selectedPackage");
+
+        const errorNameEl = document.getElementById("errorName");
+        const errorAgeEl = document.getElementById("errorAge");
+        const errorWhatsappEl = document.getElementById("errorWhatsapp");
+
+        if (nameInput) nameInput.addEventListener("input", function () { setFieldError(nameInput, errorNameEl, ""); });
+        if (ageInput) ageInput.addEventListener("input", function () { setFieldError(ageInput, errorAgeEl, ""); });
+        if (whatsappInput) whatsappInput.addEventListener("input", function () { setFieldError(whatsappInput, errorWhatsappEl, ""); });
+
+        if (registrationForm) {
+          registrationForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const dict = translations[currentLang] || translations.en;
+            let isValid = true;
+
+            const studentName = nameInput ? nameInput.value.trim() : "";
+            if (!studentName || studentName.length < 2) {
+              setFieldError(nameInput, errorNameEl, dict.errNameRequired);
+              isValid = false;
+            } else {
+              setFieldError(nameInput, errorNameEl, "");
+            }
+
+            const ageVal = ageInput ? parseInt(ageInput.value, 10) : NaN;
+            if (isNaN(ageVal) || ageVal < 7 || ageVal > 100) {
+              setFieldError(ageInput, errorAgeEl, dict.errAgeRequired);
+              isValid = false;
+            } else {
+              setFieldError(ageInput, errorAgeEl, "");
+            }
+
+            const rawPhone = whatsappInput ? whatsappInput.value.trim() : "";
+            const digitsOnly = rawPhone.replace(/\D/g, "");
+            if (digitsOnly.length < 10) {
+              setFieldError(whatsappInput, errorWhatsappEl, dict.errWhatsappRequired);
+              isValid = false;
+            } else {
+              setFieldError(whatsappInput, errorWhatsappEl, "");
+            }
+
+            if (!isValid) return;
+
+            const selectedLevelText = levelSelect ? levelSelect.options[levelSelect.selectedIndex].text : "";
+            const selectedPackageText = packageSelect ? packageSelect.options[packageSelect.selectedIndex].text : "";
+
+            const messageLines = [
+              dict.waHeader,
+              "",
+              `• *${dict.waName}:* ${studentName}`,
+              `• *${dict.waAge}:* ${ageVal}`,
+              `• *${dict.waLevel}:* ${selectedLevelText}`,
+              `• *${dict.waPackage}:* ${selectedPackageText}`,
+              `• *${dict.waPhone}:* ${rawPhone}`
+            ];
+
+            const encodedMessage = encodeURIComponent(messageLines.join("\n"));
+            const whatsappUrl = `https://wa.me/919446807161?text=${encodedMessage}`;
+            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+          });
+        }
+
+        // Initial Render: Night Mode & English
+        applyTheme();
+        setLanguage("en");
+      });
+    })();
+  </script>
+</body>
+</html>
